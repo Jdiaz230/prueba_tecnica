@@ -23,6 +23,17 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $sideserver         = route('profesional');
+        return view('home', compact('sideserver'));
     }
+    // public function index(Request $request)
+    // {
+
+    //     $title              = 'Tipos de Actividad';
+    //     // $create             = route('create.profesional');
+    //     $sideserver         = route('sideserver.profesional');
+    //     // dd($user->nombre);
+    //     return view('profesional.index', compact('title'));
+
+    // }
 }

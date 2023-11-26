@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Auth::routes();
@@ -35,4 +35,14 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//Profesional
+Route::get('/profesional', [App\Http\Controllers\UsuarioController::class, 'index'])->name('profesional');
+Route::post('/profesional/sideserver', [App\Http\Controllers\UsuarioController::class, 'sideserver'])->name('sideserver.profesional');
+// Route::get('/profesional/create', [App\Http\Controllers\UsuarioController::class, 'create'])->name('create.profesional');
+// Route::post('/profesional/store', [App\Http\Controllers\UsuarioController::class, 'store'])->name('store.profesional');
+Route::get('/profesional/edit/{id}', [App\Http\Controllers\UsuarioController::class, 'edit'])->name('edit.profesional');
+Route::post('/profesional/update/{id}', [App\Http\Controllers\UsuarioController::class, 'update'])->name('update.profesional');
+// Route::get('/profesional/delete/{id}', [App\Http\Controllers\UsuarioController::class, 'delete'])->name('delete.profesional');
+// Route::delete('/profesional/destroy/{id}', [App\Http\Controllers\UsuarioController::class, 'destroy'])->name('destroy.profesional');
+
+
