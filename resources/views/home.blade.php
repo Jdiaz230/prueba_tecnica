@@ -1,74 +1,86 @@
 @extends('layouts.app')
-
 @section('content')
-<div id="myModalContainer"></div>
-
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
-
+                <button onclick="startFCM()"
+                    class="btn btn-danger btn-flat">Allow notification
+                </button>
+            <div class="card mt-3">
                 <div class="card-body">
                     @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    <div class="container">
-
-                        <button type="button" class="btn btn-primary" id="showModalBtn">
-                            Show Modal
-                        </button>
-                      <!-- Modal Container -->
-                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <!-- Modal content here -->
-                                    <div class="modal-body" id="modalContent">
-                                        <!-- Content from sideserver route will be loaded here -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Include the modal -->
-                        {{-- @include('profesional.index') --}}
-
+                    <div class="alert alert-success" role="alert">
+                        {{ session('status') }}
                     </div>
-                    </body>
-
-
+                    @endif
+                    <form action="{{ route('send.web-notification') }}" method="POST">
+                        @csrf
+                        <div class="form-group">
+                            <label>Message Title</label>
+                            <input type="text" class="form-control" name="title">
+                        </div>
+                        <div class="form-group">
+                            <label>Message Body</label>
+                            <textarea class="form-control" name="body"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-success btn-block">Send Notification</button>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
-@endsection
-
-<!-- Add Bootstrap JavaScript and jQuery -->
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-
-<!-- JavaScript to handle modal triggering -->
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.3.2/firebase.js"></script>
 <script>
- $(document).ready(function(){
-        $('#showModalBtn').click(function(){
-            // Fetch content from sideserver route
-            $.ajax({
-                url: '{{ $sideserver }}',
-                type: 'GET',
-                success: function(data) {
-                    // Load the fetched content into the modal
-                    $('#modalContent').html(data);
-                    // Show the modal
-                    $('#myModal').modal('show');
-                }
+    var firebaseConfig = {
+        apiKey: "AIzaSyBdZMQ2GJTRg5ERsiPX0xE3Fh8uaPpZFSk",
+        authDomain: "notificacion-5e94c.firebaseapp.com",
+        projectId: "notificacion-5e94c",
+        storageBucket: "notificacion-5e94c.appspot.com",
+        messagingSenderId: "831364916492",
+        appId: "1:831364916492:web:5ddd93b9c7b38f850d5529"
+        };
+    firebase.initializeApp(firebaseConfig);
+    const messaging = firebase.messaging();
+    function startFCM() {
+        messaging
+            .requestPermission()
+            .then(function () {
+                return messaging.getToken()
+            })
+            .then(function (response) {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    url: '{{ route("store.token") }}',
+                    type: 'POST',
+                    data: {
+                        token: response
+                    },
+                    dataType: 'JSON',
+                    success: function (response) {
+                        alert('Token stored.');
+                    },
+                    error: function (error) {
+                        alert(error);
+                    },
+                });
+            }).catch(function (error) {
+                alert(error);
             });
-        });
+    }
+    messaging.onMessage(function (payload) {
+        const title = payload.notification.title;
+        const options = {
+            body: payload.notification.body,
+            icon: payload.notification.icon,
+        };
+        new Notification(title, options);
     });
 </script>
-
-
-
+@endsection

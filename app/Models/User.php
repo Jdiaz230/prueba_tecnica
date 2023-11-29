@@ -26,6 +26,7 @@ class User extends Authenticatable
         'tipo',
         'email',
         'password',
+        'device_token'
     ];
 
     /**

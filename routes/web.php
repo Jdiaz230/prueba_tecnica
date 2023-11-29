@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\NotificationSendController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,30 +33,25 @@ Route::get('/password/reset/{token}', 'App\Http\Controllers\Auth\ResetPasswordCo
 Route::post('/password/reset', 'App\Http\Controllers\Auth\ResetPasswordController@reset');
 
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 Auth::routes();
 
 //Profesional
 Route::get('/profesional', [App\Http\Controllers\UsuarioController::class, 'index'])->name('profesional');
 Route::post('/profesional/sideserver', [App\Http\Controllers\UsuarioController::class, 'sideserver'])->name('sideserver.profesional');
-// Route::get('/profesional/create', [App\Http\Controllers\UsuarioController::class, 'create'])->name('create.profesional');
-// Route::post('/profesional/store', [App\Http\Controllers\UsuarioController::class, 'store'])->name('store.profesional');
 Route::get('/profesional/edit/{id}', [App\Http\Controllers\UsuarioController::class, 'edit'])->name('edit.profesional');
 Route::post('/profesional/update/{id}', [App\Http\Controllers\UsuarioController::class, 'update'])->name('update.profesional');
-// Route::get('/profesional/delete/{id}', [App\Http\Controllers\UsuarioController::class, 'delete'])->name('delete.profesional');
-// Route::delete('/profesional/destroy/{id}', [App\Http\Controllers\UsuarioController::class, 'destroy'])->name('destroy.profesional');
 
 //Historial
-// Route::get('/historial', [App\Http\Controllers\HistoriaController::class, 'index'])->name('historial');
-// Route::post('/historial/sideserver', [App\Http\Controllers\HistoriaController::class, 'sideserver'])->name('sideserver.historial');
 Route::get('/historial/create', [App\Http\Controllers\HistoriaController::class, 'create'])->name('create.historial');
 Route::post('/historial/store', [App\Http\Controllers\HistoriaController::class, 'store'])->name('store.historial');
-// Route::get('/historial/edit/{id}', [App\Http\Controllers\HistoriaController::class, 'edit'])->name('edit.historial');
-// Route::post('/historial/update/{id}', [App\Http\Controllers\HistoriaController::class, 'update'])->name('update.historial');
-// Route::get('/historial/delete/{id}', [App\Http\Controllers\HistoriaController::class, 'delete'])->name('delete.historial');
-// Route::delete('/historial/destroy/{id}', [App\Http\Controllers\HistoriaController::class, 'destroy'])->name('destroy.historial');
-
-
 Route::get('/historial',  [App\Http\Controllers\HistoriaController::class, 'index'])->name('historial');
 Route::post('/historial/upload/{id?}', [App\Http\Controllers\HistoriaController::class, 'upload'])->name('upload.historial');
+
+//Home
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//Envio de notificaciones
+Route::group(['middleware' => 'auth'],function(){
+    Route::post('/store-token', [NotificationSendController::class, 'updateDeviceToken'])->name('store.token');
+    Route::post('/send-web-notification', [NotificationSendController::class, 'sendNotification'])->name('send.web-notification');
+});
