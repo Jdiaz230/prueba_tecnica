@@ -159,30 +159,6 @@ function printer($code, $continue = false)
 	if(!$continue){	exit(); }
 }
 
-// function sendMail($asunto, $to, $data, $view = 'email.index', $adjunto = null)
-// {
-// 	$newto = array();
-// 	if(is_array($to)){
-// 		foreach ($to as $key => $value) {
-// 			if (filter_var($value, FILTER_VALIDATE_EMAIL)) {
-// 				$newto[] = array('email' => $value, 'name' => $value);
-// 			}
-// 		}
-// 	}else{
-// 		if (filter_var($to, FILTER_VALIDATE_EMAIL)) {
-// 			$newto[] = array('email' => $to, 'name' => $to);
-// 		}
-// 	}
-// 	$view = View($view, compact('asunto', 'data'))->render();
-// 	$to   = $newto;
-// 	$attachment = null;
-// 	if(!is_null($adjunto)){
-// 		$attachment = $adjunto;
-// 	}
-// 	//dd($view);
-// 	//dd($to);
-// 	return require_once ('laravel/apiV3sendinblue.php');
-// }
 
 function NameUser($id){
 	$user = App\User::find($id);
@@ -224,17 +200,6 @@ function accessByRol($url)
 	return false;
 }
 
-// function permisoRol($user_id)
-// {
-// 	if(is_numeric($user_id) && $user_id > 0) {
-// 		$select = DB::connection('soporte')->select("SELECT r.* FROM usuarios u, roles r WHERE u.user_id = $user_id AND u.rol_id = r.id ");
-// 		if (isset($select[0]->id)) {
-// 			return (int)$select[0]->permission_id;
-// 		}
-// 	}
-// 	return 0;
-
-// }
 
 function createArrayByField($object, $field, $is_array = false)
 {

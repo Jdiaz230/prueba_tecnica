@@ -1,0 +1,201 @@
+    /*Loading page*/
+    .jm-loadingpage {
+        position: fixed;
+        left: 0px;
+        top: 0px;
+        width: 100%;
+        height: 100%;
+        z-index: 999999999;
+        background-color:#4996FF;
+        opacity: .95;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+        @keyframes bouncing{
+          0%  { bottom: 0; box-shadow: 0 0 5px rgba(0,0,0,0.5);}
+          100%{ bottom: 50px; box-shadow: 0 50px 50px rgba(0,0,0,0.1);}
+        }
+        .botonlogin{
+          line-height: 80px; 
+        }
+        .loading-button{ 
+          animation: bouncing 0.5s cubic-bezier(0.1,0.25,0.1,1) 0s infinite alternate both;
+        }
+        .spinner{
+          animation: rotate 0.5s infinite linear;
+        }
+        
+      @keyframes rotate {
+        0% {
+          transform: rotate(0);
+        }
+        100% {
+          transform: rotate(-360deg);
+        }
+      }
+
+      @media (min-width: 992px) {
+        .modal-lg,
+        .modal-xl {
+          max-width: 800px;
+        }        
+      }
+      
+      @media (min-width: 1200px) {
+        .modal-xl {
+          max-width: 1140px;
+        }        
+      }
+  
+.mayus{
+  text-transform: uppercase;
+}
+
+.minus{
+  text-transform: lowercase;
+}
+
+.capit{
+  text-transform: capitalize;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+-webkit-appearance: none; 
+margin: 0; 
+}
+
+.nav-link {
+  color: #FFFFFF !important;
+}
+
+
+.sidebar-light-info .nav-sidebar>.nav-item>.nav-link.active {
+  background-color: #424444;
+  color: #fff;
+}
+
+input[type=number] { -moz-appearance:textfield; }
+
+.ui-autocomplete {
+  z-index: 215000000 !important;
+}
+
+@media (min-width: 576px) {
+
+}
+
+
+@media (min-width: 768px) {
+
+}
+
+@media (min-width: 992px) {
+
+}
+
+@media (min-width: 1200px) {
+
+
+}
+
+label {
+  font-weight: normal !important;
+}
+
+.control-label {
+  font-weight: bold !important;
+}
+
+.modal-fullscreen .modal-dialog {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  max-width: 5000px;
+}
+
+.modal-fullscreen .modal-content {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 450px) {
+  .modal-fullscreen {
+    width: 400px;
+    padding-right: 0px !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .modal-fullscreen {
+    width: 750px;
+    padding-right: 0px !important;
+  }
+}
+
+@media (min-width: 992px) {
+  .modal-lg,
+  .modal-xl {
+    max-width: 800px;
+  }        
+  .modal-fullscreen {
+    width: 970px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .modal-xl {
+    max-width: 1140px;
+  }        
+  .modal-fullscreen {
+    width: 100%;
+    height: 100%;
+    padding-right: 0px !important;
+  }
+}
+
+.card-theme {
+  border-top: 3px solid var(--color_theme) !important;
+}
+
+
+.swal2-container.swal2-backdrop-show, .swal2-container.swal2-noanimation {
+  background: rgba(0,0,0,0.9) !important;
+}
+
+.swal2-popup {
+  background: #000 !important;
+  color: #FFFFFF !important;
+}
+
+.swal2-title {
+  color: #ffffff !important;
+}
+
+.swal2-html-container {
+  color: #ffffff !important;
+}
+
+.swal2-icon.swal2-warning {
+  border-color: #ffca2b !important;
+  color: #ffc107 !important;
+  font-weight: 900 !important;
+}
+
+.swal2-icon {
+  /* width: 7em !important;
+  height: 7em !important;
+  border: 0.5em solid transparent !important; */
+}
+
+
+.o-form-canva {
+width: 100%;
+height: 200px;
+border: 2px solid #cdd9e2;
+border-radius: 4px
+}

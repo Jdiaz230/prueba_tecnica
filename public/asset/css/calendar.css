@@ -1,0 +1,47 @@
+/* fullcalendar.css */
+
+#calendar {
+    width: 800px; 
+    height: 600px; 
+    margin: 0 auto;
+    position: relative;
+}
+.fc-event-title {
+    font-size: 16px;
+    
+}
+/* para pantallas de 768px  o menos */
+@media screen and (max-width: 768px) {
+    #calendar-container {
+        width: 600px;
+        height: 400px; 
+    }
+
+    .fc-event-title {
+        font-size: 14px;
+    }
+}
+
+/* para pantallas de 480px  o menos */
+@media screen and (max-width: 480px) {
+    #calendar-container {
+        width: 400px;
+        height: 200px; 
+    }
+
+    .fc-event-title {
+        font-size: 12px;
+    }
+}
+
+/* para pantallas de 320px o menos */
+@media screen and (max-width: 320px) {
+    #calendar-container {
+        width: 300px;
+        height: 150px; 
+    }
+
+    .fc-event-title {
+        font-size: 10px;
+    }
+}

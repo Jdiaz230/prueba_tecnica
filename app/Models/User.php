@@ -47,4 +47,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function getNombreCompleto()
+    {
+        return $this->nombre . ' ' . $this->apellido; // Replace with your actual attribute names
+    }
 }

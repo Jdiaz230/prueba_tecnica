@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/success', function () {return view('success');})->name('success_route');
 
 Route::get('/', function () {
     return view('auth.login');
@@ -45,4 +46,16 @@ Route::post('/profesional/update/{id}', [App\Http\Controllers\UsuarioController:
 // Route::get('/profesional/delete/{id}', [App\Http\Controllers\UsuarioController::class, 'delete'])->name('delete.profesional');
 // Route::delete('/profesional/destroy/{id}', [App\Http\Controllers\UsuarioController::class, 'destroy'])->name('destroy.profesional');
 
+//Historial
+// Route::get('/historial', [App\Http\Controllers\HistoriaController::class, 'index'])->name('historial');
+// Route::post('/historial/sideserver', [App\Http\Controllers\HistoriaController::class, 'sideserver'])->name('sideserver.historial');
+Route::get('/historial/create', [App\Http\Controllers\HistoriaController::class, 'create'])->name('create.historial');
+Route::post('/historial/store', [App\Http\Controllers\HistoriaController::class, 'store'])->name('store.historial');
+// Route::get('/historial/edit/{id}', [App\Http\Controllers\HistoriaController::class, 'edit'])->name('edit.historial');
+// Route::post('/historial/update/{id}', [App\Http\Controllers\HistoriaController::class, 'update'])->name('update.historial');
+// Route::get('/historial/delete/{id}', [App\Http\Controllers\HistoriaController::class, 'delete'])->name('delete.historial');
+// Route::delete('/historial/destroy/{id}', [App\Http\Controllers\HistoriaController::class, 'destroy'])->name('destroy.historial');
 
+
+Route::get('/historial',  [App\Http\Controllers\HistoriaController::class, 'index'])->name('historial');
+Route::post('/historial/upload/{id?}', [App\Http\Controllers\HistoriaController::class, 'upload'])->name('upload.historial');
